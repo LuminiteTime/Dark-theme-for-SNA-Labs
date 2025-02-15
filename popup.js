@@ -66,8 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const tab = tabs[0];
     chrome.scripting.executeScript({
       target: { tabId: tab.id },
-      function: getCurrentTheme,
-      args: [COLORS]
+      function: getCurrentTheme
     }, (results) => {
       if (results && results[0]) {
         toggle.checked = results[0].result;
@@ -87,9 +86,9 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-function getCurrentTheme(colors) {
-  const bodyColor = window.getComputedStyle(document.body).color;
-  return bodyColor === colors.DARK.BODY.TEXT;
+function getCurrentTheme() {
+  const bodyColor = window.getComputedStyle(document.body).backgroundColor;
+  return bodyColor === 'rgb(51, 51, 51)' || bodyColor === '#333';
 }
 
 function updateTheme(isDark, colors) {
