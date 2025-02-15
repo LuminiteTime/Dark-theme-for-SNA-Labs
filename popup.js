@@ -1,15 +1,15 @@
 const COLORS = {
   DARK: {
     BODY: {
-      TEXT: '#FFF',
-      BACKGROUND: '#333'
+      TEXT: '#F8F8F2',
+      BACKGROUND: '#282A36'
     },
     PRE: {
       TEXT: '#E1E1E1',
-      BACKGROUND: '#1E1E1E',
+      BACKGROUND: '#1A1B23',
       SCROLLBAR: {
         THUMB: '#50FA7B',
-        TRACK: '#1E1E1E'
+        TRACK: '#1A1B23'
       }
     },
     CODE: {
@@ -24,15 +24,15 @@ const COLORS = {
       OUTLINE: '#50FA7B'
     },
     NAVIGATION: {
-      BACKGROUND: '#1E1E1E',
+      BACKGROUND: '#1A1B23',
       TEXT: '#E1E1E1',
       HOVER: {
         TEXT: '#50FA7B',
-        BACKGROUND: '#2A2A2A'
+        BACKGROUND: '#343746'
       },
       ACTIVE: {
         TEXT: '#50FA7B',
-        BACKGROUND: '#2A2A2A'
+        BACKGROUND: '#343746'
       }
     },
     POPUP: {
@@ -45,15 +45,15 @@ const COLORS = {
     },
     HEADINGS: {
       H1: {
-        TEXT: '#50FA7B',
-        BORDER: '#2A3A1B'
+        TEXT: '#BD93F9',
+        BORDER: '#343746'
       },
       H2: {
-        TEXT: '#A5EC60',
-        BORDER: '#2A3A1B'
+        TEXT: '#FF79C6',
+        BORDER: '#343746'
       },
       H3: {
-        TEXT: '#E1E1E1'
+        TEXT: '#F1FA8C'
       }
     },
     LINK_ICON: {
@@ -63,15 +63,14 @@ const COLORS = {
   LIGHT: {
     BODY: {
       TEXT: '#333',
-      BACKGROUND: '#FFF'
+      BACKGROUND: '#FAFAFA'
     },
     PRE: {
       TEXT: '#333',
       BACKGROUND: '#F5F5F5',
       SCROLLBAR: {
         THUMB: '#0033CC',
-        TRACK: '#F5F5F5',
-        HOVER: '#999'
+        TRACK: '#F5F5F5'
       }
     },
     CODE: {
@@ -107,15 +106,15 @@ const COLORS = {
     },
     HEADINGS: {
       H1: {
-        TEXT: '#0033CC',
+        TEXT: '#2D5AF0',
         BORDER: '#E6E6EE'
       },
       H2: {
-        TEXT: '#000080',
+        TEXT: '#5B45D6',
         BORDER: '#E6E6EE'
       },
       H3: {
-        TEXT: '#333'
+        TEXT: '#0055FF'
       }
     },
     LINK_ICON: {
@@ -153,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function getCurrentTheme() {
   const bodyColor = window.getComputedStyle(document.body).backgroundColor;
-  return bodyColor === 'rgb(51, 51, 51)' || bodyColor === '#333';
+  return bodyColor === 'rgb(40, 42, 54)' || bodyColor === '#282A36';
 }
 
 function updateTheme(isDark, colors) {
@@ -161,6 +160,7 @@ function updateTheme(isDark, colors) {
 
   document.body.style.color = theme.BODY.TEXT;
   document.body.style.backgroundColor = theme.BODY.BACKGROUND;
+  document.body.style.transition = 'all 0.3s ease';
 
   const preTags = document.getElementsByTagName('pre');
   for (let pre of preTags) {
@@ -211,22 +211,27 @@ function updateTheme(isDark, colors) {
   const navigation = document.getElementById('ui-toc-affix');
   if (navigation) {
     navigation.style.backgroundColor = theme.NAVIGATION.BACKGROUND;
-    navigation.style.padding = '15px';
-    navigation.style.borderRadius = '8px';
-    navigation.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.15)';
+    navigation.style.padding = '15px 20px';
+    navigation.style.borderRadius = '12px';
+    navigation.style.boxShadow = isDark 
+      ? '0 4px 12px rgba(0, 0, 0, 0.3)' 
+      : '0 4px 12px rgba(0, 0, 0, 0.1)';
     navigation.style.maxHeight = 'calc(100vh - 50px)';
     navigation.style.overflowY = 'auto';
     navigation.style.marginLeft = '30px';
+    navigation.style.transition = 'all 0.3s ease';
 
     const links = navigation.getElementsByTagName('a');
     for (let link of links) {
       link.style.color = theme.NAVIGATION.TEXT;
       link.style.textDecoration = 'none';
       link.style.display = 'block';
-      link.style.padding = '5px 10px';
-      link.style.margin = '2px 0';
-      link.style.borderRadius = '4px';
+      link.style.padding = '8px 12px';
+      link.style.margin = '3px 0';
+      link.style.borderRadius = '6px';
       link.style.transition = 'all 0.2s ease';
+      link.style.fontSize = '0.95em';
+      link.style.letterSpacing = '0.3px';
 
       link.addEventListener('mouseenter', () => {
         link.style.color = theme.NAVIGATION.HOVER.TEXT;
@@ -266,10 +271,12 @@ function updateTheme(isDark, colors) {
   for (let h1 of h1Tags) {
     h1.style.color = theme.HEADINGS.H1.TEXT;
     h1.style.fontSize = '2.5em';
-    h1.style.fontWeight = '600';
+    h1.style.fontWeight = '700';
     h1.style.marginBottom = '0.7em';
     h1.style.paddingBottom = '0.3em';
     h1.style.borderBottom = `2px solid ${theme.HEADINGS.H1.BORDER}`;
+    h1.style.letterSpacing = '-0.5px';
+    h1.style.transition = 'all 0.3s ease';
   }
 
   const h2Tags = document.getElementsByTagName('h2');
