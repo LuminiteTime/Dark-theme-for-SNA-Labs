@@ -1,12 +1,16 @@
 const COLORS = {
   DARK: {
     BODY: {
-      TEXT: '#fff',
+      TEXT: '#FFF',
       BACKGROUND: '#333'
     },
     PRE: {
       TEXT: '#E1E1E1',
-      BACKGROUND: '#1E1E1E'
+      BACKGROUND: '#1E1E1E',
+      SCROLLBAR: {
+        THUMB: '#50FA7B',
+        TRACK: '#1E1E1E'
+      }
     },
     CODE: {
       TEXT: '#50FA7B'
@@ -31,11 +35,16 @@ const COLORS = {
   LIGHT: {
     BODY: {
       TEXT: '#333',
-      BACKGROUND: '#fff'
+      BACKGROUND: '#FFF'
     },
     PRE: {
       TEXT: '#333',
-      BACKGROUND: '#f5f5f5'
+      BACKGROUND: '#F5F5F5',
+      SCROLLBAR: {
+        THUMB: '#0033CC',
+        TRACK: '#F5F5F5',
+        HOVER: '#999'
+      }
     },
     CODE: {
       TEXT: '#0033CC'
@@ -101,6 +110,26 @@ function updateTheme(isDark, colors) {
   for (let pre of preTags) {
     pre.style.backgroundColor = theme.PRE.BACKGROUND;
     pre.style.color = theme.PRE.TEXT;
+    
+    pre.style.overflowX = 'auto';
+    pre.style.scrollbarWidth = 'thin';
+    pre.style.scrollbarColor = `${theme.PRE.SCROLLBAR.THUMB} ${theme.PRE.SCROLLBAR.TRACK}`;
+    
+    pre.style.cssText += `
+      &::-webkit-scrollbar {
+        height: 8px;
+      }
+      &::-webkit-scrollbar-track {
+        background: ${theme.PRE.SCROLLBAR.TRACK};
+      }
+      &::-webkit-scrollbar-thumb {
+        background: ${theme.PRE.SCROLLBAR.THUMB};
+        border-radius: 4px;
+      }
+      &::-webkit-scrollbar-thumb:hover {
+        background: ${theme.PRE.SCROLLBAR.HOVER};
+      }
+    `;
     
     const code = pre.querySelector('code');
     if (code) {
