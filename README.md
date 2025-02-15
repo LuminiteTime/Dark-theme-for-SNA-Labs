@@ -1,9 +1,9 @@
 <div align="center">
-  <img src="dark-icon.png" alt="SNA Labs Theme Toggle" width="128" height="128">
+  <img src="dark-icon.png" alt="SNA Labs Theme Enhancer" width="128" height="128">
 
-  # 🌓 SNA Labs Theme Toggle
+  # 🌓 SNA Labs Theme Enhancer
 
-  A sleek Chrome extension that brings dark mode to SNA Labs HTML pages
+  A stylish Chrome extension that brings improved dark and light mode to SNA Labs HTML pages
   
   [![Chrome Extension](https://img.shields.io/badge/Platform-Chrome-blue.svg?style=flat-square)](https://chrome.google.com/)
   [![Version](https://img.shields.io/badge/Version-1.0-green.svg?style=flat-square)](https://github.com/LuminiteTime/Dark-theme-for-SNA-Labs)

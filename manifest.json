@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "SNA Labs Theme Toggle",
+  "name": "SNA Labs Theme Enhancer",
   "version": "1.0",
   "description": "Toggle dark theme for SNA Labs HTML pages",
   "permissions": ["activeTab", "scripting"],
