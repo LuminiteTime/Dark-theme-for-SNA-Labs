@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
   const toggle = document.getElementById('themeToggle');
   
-  // Проверяем текущую тему при открытии popup
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     const tab = tabs[0];
     chrome.scripting.executeScript({
@@ -26,10 +25,8 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-// Функция для определения текущей темы
 function getCurrentTheme() {
   const bodyColor = window.getComputedStyle(document.body).color;
-  // Если цвет текста белый, значит тема тёмная
   return bodyColor === 'rgb(255, 255, 255)';
 }
 
