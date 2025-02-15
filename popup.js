@@ -55,6 +55,9 @@ const COLORS = {
       H3: {
         TEXT: '#E1E1E1'
       }
+    },
+    LINK_ICON: {
+      COLOR: '#50FA7B'
     }
   },
   LIGHT: {
@@ -114,6 +117,9 @@ const COLORS = {
       H3: {
         TEXT: '#333'
       }
+    },
+    LINK_ICON: {
+      COLOR: '#0033CC'
     }
   }
 };
@@ -210,6 +216,7 @@ function updateTheme(isDark, colors) {
     navigation.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.15)';
     navigation.style.maxHeight = 'calc(100vh - 50px)';
     navigation.style.overflowY = 'auto';
+    navigation.style.marginLeft = '30px';
 
     const links = navigation.getElementsByTagName('a');
     for (let link of links) {
@@ -283,5 +290,10 @@ function updateTheme(isDark, colors) {
     h3.style.fontWeight = '600';
     h3.style.marginTop = '1.3em';
     h3.style.marginBottom = '0.4em';
+  }
+
+  const linkIcons = document.getElementsByClassName('octicon-link');
+  for (let icon of linkIcons) {
+    icon.style.color = theme.LINK_ICON.COLOR;
   }
 } 
