@@ -8,30 +8,30 @@ const COLORS = {
       TEXT: '#E1E1E1',
       BACKGROUND: '#1A1B23',
       SCROLLBAR: {
-        THUMB: '#50FA7B',
+        THUMB: '#BD93F9',
         TRACK: '#1A1B23'
       }
     },
     CODE: {
-      TEXT: '#50FA7B'
+      TEXT: '#BD93F9'
     },
     BLOCKQUOTE: {
-      TEXT: '#A5EC60',
-      BORDER: '#A5EC60',
-      BACKGROUND: '#2A3A1B'
+      TEXT: '#BD93F9',
+      BORDER: '#BD93F9',
+      BACKGROUND: '#2A2B3C'
     },
     WRAPPER: {
-      OUTLINE: '#50FA7B'
+      OUTLINE: '#BD93F9'
     },
     NAVIGATION: {
       BACKGROUND: '#1A1B23',
       TEXT: '#E1E1E1',
       HOVER: {
-        TEXT: '#50FA7B',
+        TEXT: '#BD93F9',
         BACKGROUND: '#343746'
       },
       ACTIVE: {
-        TEXT: '#50FA7B',
+        TEXT: '#BD93F9',
         BACKGROUND: '#343746'
       }
     },
@@ -49,15 +49,15 @@ const COLORS = {
         BORDER: '#343746'
       },
       H2: {
-        TEXT: '#FF79C6',
+        TEXT: '#9580E8',
         BORDER: '#343746'
       },
       H3: {
-        TEXT: '#F1FA8C'
+        TEXT: '#7B6AD8'
       }
     },
     LINK_ICON: {
-      COLOR: '#50FA7B'
+      COLOR: '#BD93F9'
     }
   },
   LIGHT: {
@@ -69,31 +69,31 @@ const COLORS = {
       TEXT: '#333',
       BACKGROUND: '#F5F5F5',
       SCROLLBAR: {
-        THUMB: '#0033CC',
+        THUMB: '#6B4BFF',
         TRACK: '#F5F5F5'
       }
     },
     CODE: {
-      TEXT: '#0033CC'
+      TEXT: '#6B4BFF'
     },
     BLOCKQUOTE: {
-      TEXT: '#000080',
-      BORDER: '#000080',
-      BACKGROUND: '#E6E6EE'
+      TEXT: '#6B4BFF',
+      BORDER: '#6B4BFF',
+      BACKGROUND: '#F5F2FF'
     },
     WRAPPER: {
-      OUTLINE: '#0033CC'
+      OUTLINE: '#6B4BFF'
     },
     NAVIGATION: {
       BACKGROUND: '#F5F5F5',
       TEXT: '#333',
       HOVER: {
-        TEXT: '#0033CC',
-        BACKGROUND: '#E6E6EE'
+        TEXT: '#6B4BFF',
+        BACKGROUND: '#F5F2FF'
       },
       ACTIVE: {
-        TEXT: '#0033CC',
-        BACKGROUND: '#E6E6EE'
+        TEXT: '#6B4BFF',
+        BACKGROUND: '#F5F2FF'
       }
     },
     POPUP: {
@@ -106,7 +106,7 @@ const COLORS = {
     },
     HEADINGS: {
       H1: {
-        TEXT: '#2D5AF0',
+        TEXT: '#6B4BFF',
         BORDER: '#E6E6EE'
       },
       H2: {
@@ -114,11 +114,11 @@ const COLORS = {
         BORDER: '#E6E6EE'
       },
       H3: {
-        TEXT: '#0055FF'
+        TEXT: '#4B3AB3'
       }
     },
     LINK_ICON: {
-      COLOR: '#0033CC'
+      COLOR: '#6B4BFF'
     }
   }
 };
@@ -272,6 +272,82 @@ function updateTheme(isDark, colors) {
     `;
   }
 
+  // Создаем и добавляем стили для заголовков
+  const styleSheet = document.createElement('style');
+  styleSheet.textContent = `
+    h1 {
+      position: relative;
+    }
+    h1::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, 
+        ${theme.HEADINGS.H1.TEXT} 0%, 
+        ${theme.HEADINGS.H1.BORDER} 100%
+      );
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    h1:hover::after {
+      transform: scaleX(1.02);
+    }
+
+    h2 {
+      position: relative;
+    }
+    h2::after {
+      content: '';
+      position: absolute;
+      left: 15%;
+      bottom: 0;
+      width: 70%;
+      height: 2px;
+      background: linear-gradient(90deg, 
+        transparent 0%,
+        ${theme.HEADINGS.H2.TEXT} 50%,
+        transparent 100%
+      );
+      transform: scaleX(0.95);
+      transition: transform 0.3s ease;
+    }
+    h2:hover::after {
+      transform: scaleX(1);
+    }
+
+    h3 {
+      position: relative;
+      display: inline-block;
+    }
+    h3::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 100%;
+      height: 1px;
+      background: ${theme.HEADINGS.H3.TEXT};
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+    h3:hover::after {
+      transform: scaleX(1);
+    }
+  `;
+
+  // Удаляем старые стили, если они есть
+  const oldStyle = document.getElementById('theme-styles');
+  if (oldStyle) {
+    oldStyle.remove();
+  }
+
+  // Добавляем новые стили
+  styleSheet.id = 'theme-styles';
+  document.head.appendChild(styleSheet);
+
   const h1Tags = document.getElementsByTagName('h1');
   for (let h1 of h1Tags) {
     h1.style.color = theme.HEADINGS.H1.TEXT;
@@ -279,7 +355,6 @@ function updateTheme(isDark, colors) {
     h1.style.fontWeight = '700';
     h1.style.marginBottom = '0.7em';
     h1.style.paddingBottom = '0.3em';
-    h1.style.borderBottom = `2px solid ${theme.HEADINGS.H1.BORDER}`;
     h1.style.letterSpacing = '-0.5px';
     h1.style.transition = 'all 0.3s ease';
     h1.style.fontFamily = '"JetBrains Mono", monospace';
@@ -293,7 +368,6 @@ function updateTheme(isDark, colors) {
     h2.style.marginTop = '1.5em';
     h2.style.marginBottom = '0.5em';
     h2.style.paddingBottom = '0.3em';
-    h2.style.borderBottom = `1px solid ${theme.HEADINGS.H2.BORDER}`;
     h2.style.fontFamily = '"JetBrains Mono", monospace';
   }
 
