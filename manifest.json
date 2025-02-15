@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "SNA Labs Theme Switcher",
+  "version": "1.0",
+  "description": "Toggle dark theme for SNA Labs html pages",
+  "permissions": ["activeTab", "scripting"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "dark-icon.png"
+  },
+  "icons": {
+    "128": "dark-icon.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ]
+} 
