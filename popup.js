@@ -42,6 +42,19 @@ const COLORS = {
     TOGGLE: {
       BACKGROUND: '#6B4BFF',
       HOVER: 'rgba(107, 75, 255, 0.5)'
+    },
+    HEADINGS: {
+      H1: {
+        TEXT: '#50FA7B',
+        BORDER: '#2A3A1B'
+      },
+      H2: {
+        TEXT: '#A5EC60',
+        BORDER: '#2A3A1B'
+      },
+      H3: {
+        TEXT: '#E1E1E1'
+      }
     }
   },
   LIGHT: {
@@ -88,6 +101,19 @@ const COLORS = {
     TOGGLE: {
       BACKGROUND: '#6B4BFF',
       HOVER: 'rgba(107, 75, 255, 0.5)'
+    },
+    HEADINGS: {
+      H1: {
+        TEXT: '#0033CC',
+        BORDER: '#E6E6EE'
+      },
+      H2: {
+        TEXT: '#000080',
+        BORDER: '#E6E6EE'
+      },
+      H3: {
+        TEXT: '#333'
+      }
     }
   }
 };
@@ -232,5 +258,36 @@ function updateTheme(isDark, colors) {
         border-radius: 4px;
       }
     `;
+  }
+
+  // Стили для заголовков
+  const h1Tags = document.getElementsByTagName('h1');
+  for (let h1 of h1Tags) {
+    h1.style.color = theme.HEADINGS.H1.TEXT;
+    h1.style.fontSize = '2.5em';
+    h1.style.fontWeight = '600';
+    h1.style.marginBottom = '0.7em';
+    h1.style.paddingBottom = '0.3em';
+    h1.style.borderBottom = `2px solid ${theme.HEADINGS.H1.BORDER}`;
+  }
+
+  const h2Tags = document.getElementsByTagName('h2');
+  for (let h2 of h2Tags) {
+    h2.style.color = theme.HEADINGS.H2.TEXT;
+    h2.style.fontSize = '2em';
+    h2.style.fontWeight = '600';
+    h2.style.marginTop = '1.5em';
+    h2.style.marginBottom = '0.5em';
+    h2.style.paddingBottom = '0.3em';
+    h2.style.borderBottom = `1px solid ${theme.HEADINGS.H2.BORDER}`;
+  }
+
+  const h3Tags = document.getElementsByTagName('h3');
+  for (let h3 of h3Tags) {
+    h3.style.color = theme.HEADINGS.H3.TEXT;
+    h3.style.fontSize = '1.5em';
+    h3.style.fontWeight = '600';
+    h3.style.marginTop = '1.3em';
+    h3.style.marginBottom = '0.4em';
   }
 } 
