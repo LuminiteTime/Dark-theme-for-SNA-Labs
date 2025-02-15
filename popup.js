@@ -126,9 +126,6 @@ function updateTheme(isDark, colors) {
         background: ${theme.PRE.SCROLLBAR.THUMB};
         border-radius: 4px;
       }
-      &::-webkit-scrollbar-thumb:hover {
-        background: ${theme.PRE.SCROLLBAR.HOVER};
-      }
     `;
     
     const code = pre.querySelector('code');
