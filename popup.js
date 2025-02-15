@@ -161,11 +161,13 @@ function updateTheme(isDark, colors) {
   document.body.style.color = theme.BODY.TEXT;
   document.body.style.backgroundColor = theme.BODY.BACKGROUND;
   document.body.style.transition = 'all 0.3s ease';
+  document.body.style.fontFamily = '"JetBrains Mono", monospace';
 
   const preTags = document.getElementsByTagName('pre');
   for (let pre of preTags) {
     pre.style.backgroundColor = theme.PRE.BACKGROUND;
     pre.style.color = theme.PRE.TEXT;
+    pre.style.fontFamily = '"JetBrains Mono", monospace';
     
     pre.style.overflowX = 'auto';
     pre.style.scrollbarWidth = 'thin';
@@ -187,6 +189,7 @@ function updateTheme(isDark, colors) {
     const code = pre.querySelector('code');
     if (code) {
       code.style.color = theme.CODE.TEXT;
+      code.style.fontFamily = '"JetBrains Mono", monospace';
     }
   }
 
@@ -220,6 +223,7 @@ function updateTheme(isDark, colors) {
     navigation.style.overflowY = 'auto';
     navigation.style.marginLeft = '30px';
     navigation.style.transition = 'all 0.3s ease';
+    navigation.style.fontFamily = '"JetBrains Mono", monospace';
 
     const links = navigation.getElementsByTagName('a');
     for (let link of links) {
@@ -232,6 +236,7 @@ function updateTheme(isDark, colors) {
       link.style.transition = 'all 0.2s ease';
       link.style.fontSize = '0.95em';
       link.style.letterSpacing = '0.3px';
+      link.style.fontFamily = '"JetBrains Mono", monospace';
 
       link.addEventListener('mouseenter', () => {
         link.style.color = theme.NAVIGATION.HOVER.TEXT;
@@ -277,6 +282,7 @@ function updateTheme(isDark, colors) {
     h1.style.borderBottom = `2px solid ${theme.HEADINGS.H1.BORDER}`;
     h1.style.letterSpacing = '-0.5px';
     h1.style.transition = 'all 0.3s ease';
+    h1.style.fontFamily = '"JetBrains Mono", monospace';
   }
 
   const h2Tags = document.getElementsByTagName('h2');
@@ -288,6 +294,7 @@ function updateTheme(isDark, colors) {
     h2.style.marginBottom = '0.5em';
     h2.style.paddingBottom = '0.3em';
     h2.style.borderBottom = `1px solid ${theme.HEADINGS.H2.BORDER}`;
+    h2.style.fontFamily = '"JetBrains Mono", monospace';
   }
 
   const h3Tags = document.getElementsByTagName('h3');
@@ -297,6 +304,7 @@ function updateTheme(isDark, colors) {
     h3.style.fontWeight = '600';
     h3.style.marginTop = '1.3em';
     h3.style.marginBottom = '0.4em';
+    h3.style.fontFamily = '"JetBrains Mono", monospace';
   }
 
   const linkIcons = document.getElementsByClassName('octicon-link');
