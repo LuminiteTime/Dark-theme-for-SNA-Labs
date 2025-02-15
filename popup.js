@@ -23,6 +23,18 @@ const COLORS = {
     WRAPPER: {
       OUTLINE: '#50FA7B'
     },
+    NAVIGATION: {
+      BACKGROUND: '#1E1E1E',
+      TEXT: '#E1E1E1',
+      HOVER: {
+        TEXT: '#50FA7B',
+        BACKGROUND: '#2A2A2A'
+      },
+      ACTIVE: {
+        TEXT: '#50FA7B',
+        BACKGROUND: '#2A2A2A'
+      }
+    },
     POPUP: {
       BACKGROUND: '#1E1E1E',
       TEXT: '#E1E1E1'
@@ -56,6 +68,18 @@ const COLORS = {
     },
     WRAPPER: {
       OUTLINE: '#0033CC'
+    },
+    NAVIGATION: {
+      BACKGROUND: '#F5F5F5',
+      TEXT: '#333',
+      HOVER: {
+        TEXT: '#0033CC',
+        BACKGROUND: '#E6E6EE'
+      },
+      ACTIVE: {
+        TEXT: '#0033CC',
+        BACKGROUND: '#E6E6EE'
+      }
     },
     POPUP: {
       BACKGROUND: '#1E1E1E',
@@ -150,5 +174,63 @@ function updateTheme(isDark, colors) {
     blockquote.style.color = theme.BLOCKQUOTE.TEXT;
     blockquote.style.borderLeft = `.25em solid ${theme.BLOCKQUOTE.BORDER}`;
     blockquote.style.backgroundColor = theme.BLOCKQUOTE.BACKGROUND;
+  }
+
+  // Стили для меню навигации
+  const navigation = document.getElementById('ui-toc-affix');
+  if (navigation) {
+    navigation.style.backgroundColor = theme.NAVIGATION.BACKGROUND;
+    navigation.style.padding = '15px';
+    navigation.style.borderRadius = '8px';
+    navigation.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.15)';
+    navigation.style.maxHeight = 'calc(100vh - 50px)';
+    navigation.style.overflowY = 'auto';
+
+    // Стили для ссылок в навигации
+    const links = navigation.getElementsByTagName('a');
+    for (let link of links) {
+      link.style.color = theme.NAVIGATION.TEXT;
+      link.style.textDecoration = 'none';
+      link.style.display = 'block';
+      link.style.padding = '5px 10px';
+      link.style.margin = '2px 0';
+      link.style.borderRadius = '4px';
+      link.style.transition = 'all 0.2s ease';
+
+      // Hover эффект
+      link.addEventListener('mouseenter', () => {
+        link.style.color = theme.NAVIGATION.HOVER.TEXT;
+        link.style.backgroundColor = theme.NAVIGATION.HOVER.BACKGROUND;
+      });
+      link.addEventListener('mouseleave', () => {
+        if (!link.classList.contains('active')) {
+          link.style.color = theme.NAVIGATION.TEXT;
+          link.style.backgroundColor = 'transparent';
+        }
+      });
+
+      // Активная ссылка
+      if (link.classList.contains('active')) {
+        link.style.color = theme.NAVIGATION.ACTIVE.TEXT;
+        link.style.backgroundColor = theme.NAVIGATION.ACTIVE.BACKGROUND;
+      }
+    }
+
+    // Стили для скроллбара навигации (такие же как у pre)
+    navigation.style.scrollbarWidth = 'thin';
+    navigation.style.scrollbarColor = `${theme.PRE.SCROLLBAR.THUMB} ${theme.PRE.SCROLLBAR.TRACK}`;
+    
+    navigation.style.cssText += `
+      &::-webkit-scrollbar {
+        width: 8px;
+      }
+      &::-webkit-scrollbar-track {
+        background: ${theme.PRE.SCROLLBAR.TRACK};
+      }
+      &::-webkit-scrollbar-thumb {
+        background: ${theme.PRE.SCROLLBAR.THUMB};
+        border-radius: 4px;
+      }
+    `;
   }
 } 
