@@ -13,7 +13,8 @@ const COLORS = {
     },
     BLOCKQUOTE: {
       TEXT: '#A5EC60',
-      BORDER: '#A5EC60'
+      BORDER: '#A5EC60',
+      BACKGROUND: '#2A3A1B'
     },
     WRAPPER: {
       OUTLINE: '#50FA7B'
@@ -40,8 +41,9 @@ const COLORS = {
       TEXT: '#0033CC'
     },
     BLOCKQUOTE: {
-      TEXT: '#6B4BFF',
-      BORDER: '#6B4BFF'
+      TEXT: '#000080',
+      BORDER: '#000080',
+      BACKGROUND: '#E6E6EE'
     },
     WRAPPER: {
       OUTLINE: '#0033CC'
@@ -122,5 +124,6 @@ function updateTheme(isDark, colors) {
   for (let blockquote of blockquotes) {
     blockquote.style.color = theme.BLOCKQUOTE.TEXT;
     blockquote.style.borderLeft = `.25em solid ${theme.BLOCKQUOTE.BORDER}`;
+    blockquote.style.backgroundColor = theme.BLOCKQUOTE.BACKGROUND;
   }
 } 
