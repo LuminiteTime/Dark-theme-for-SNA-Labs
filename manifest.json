@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "SNA Labs Theme Switcher",
+  "name": "SNA Labs Theme Toggle",
   "version": "1.0",
-  "description": "Toggle dark theme for SNA Labs html pages",
+  "description": "Toggle dark theme for SNA Labs HTML pages",
   "permissions": ["activeTab", "scripting"],
   "action": {
     "default_popup": "popup.html",
