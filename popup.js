@@ -202,7 +202,6 @@ function updateTheme(isDark, colors) {
     blockquote.style.backgroundColor = theme.BLOCKQUOTE.BACKGROUND;
   }
 
-  // Стили для меню навигации
   const navigation = document.getElementById('ui-toc-affix');
   if (navigation) {
     navigation.style.backgroundColor = theme.NAVIGATION.BACKGROUND;
@@ -212,7 +211,6 @@ function updateTheme(isDark, colors) {
     navigation.style.maxHeight = 'calc(100vh - 50px)';
     navigation.style.overflowY = 'auto';
 
-    // Стили для ссылок в навигации
     const links = navigation.getElementsByTagName('a');
     for (let link of links) {
       link.style.color = theme.NAVIGATION.TEXT;
@@ -223,7 +221,6 @@ function updateTheme(isDark, colors) {
       link.style.borderRadius = '4px';
       link.style.transition = 'all 0.2s ease';
 
-      // Hover эффект
       link.addEventListener('mouseenter', () => {
         link.style.color = theme.NAVIGATION.HOVER.TEXT;
         link.style.backgroundColor = theme.NAVIGATION.HOVER.BACKGROUND;
@@ -235,14 +232,12 @@ function updateTheme(isDark, colors) {
         }
       });
 
-      // Активная ссылка
       if (link.classList.contains('active')) {
         link.style.color = theme.NAVIGATION.ACTIVE.TEXT;
         link.style.backgroundColor = theme.NAVIGATION.ACTIVE.BACKGROUND;
       }
     }
 
-    // Стили для скроллбара навигации (такие же как у pre)
     navigation.style.scrollbarWidth = 'thin';
     navigation.style.scrollbarColor = `${theme.PRE.SCROLLBAR.THUMB} ${theme.PRE.SCROLLBAR.TRACK}`;
     
@@ -260,7 +255,6 @@ function updateTheme(isDark, colors) {
     `;
   }
 
-  // Стили для заголовков
   const h1Tags = document.getElementsByTagName('h1');
   for (let h1 of h1Tags) {
     h1.style.color = theme.HEADINGS.H1.TEXT;
